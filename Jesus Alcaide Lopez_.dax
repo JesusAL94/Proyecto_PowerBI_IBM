@@ -1,0 +1,17 @@
+﻿'Medidas DAX'DEFINE 
+---- MODEL MEASURES BEGIN ----
+MEASURE 'Medidas DAX'[ComprasTotales_sitios] = SUM(d_Compras[#Compras_Catalogo]) + SUM(d_Compras[#Compras_tienda]) + SUM(d_Compras[#Compras_trato]) + SUM(d_Compras[#Compras_Web]) 
+MEASURE 'Medidas DAX'[IngresoMedio_clientes] = (SUM('f_CampañaMarketing'[#Ingresos]) / [TotalClientes])
+MEASURE 'Medidas DAX'[Total Ingresos] = SUM('f_CampañaMarketing'[#Ingresos])
+MEASURE 'Medidas DAX'[TotalCampañas] = SUM('f_CampañaMarketing'[#Ingresos])
+MEASURE 'Medidas DAX'[TotalCampañas_NOBLANK] = IF(ISBLANK([TotalCampañas]), 0 , [TotalCampañas])
+MEASURE 'Medidas DAX'[TotalClientes] = COUNTROWS('f_CampañaMarketing')
+MEASURE 'Medidas DAX'[TotalClientes_NOBLANK] = IF(ISBLANK([TotalClientes]), 0 , [TotalClientes])
+MEASURE 'Medidas DAX'[TotalCompras_Carnes] = IF(ISBLANK([ComprasTotales_sitios] * SUM(d_Productos[#Carnes])), 0 , [ComprasTotales_sitios] * SUM(d_Productos[#Carnes]) )
+MEASURE 'Medidas DAX'[TotalCompras_Dulces] = IF(ISBLANK([ComprasTotales_sitios] * SUM(d_Productos[#Dulces])), 0 , [ComprasTotales_sitios] * SUM(d_Productos[#Dulces]) )
+MEASURE 'Medidas DAX'[TotalCompras_Frutas] = IF(ISBLANK([ComprasTotales_sitios] * SUM(d_Productos[#Frutas])), 0 , [ComprasTotales_sitios] * SUM(d_Productos[#Frutas]) )
+MEASURE 'Medidas DAX'[TotalCompras_Oro] = IF(ISBLANK([ComprasTotales_sitios] * SUM(d_Productos[#Oro])), 0 , [ComprasTotales_sitios] * SUM(d_Productos[#Oro]) )
+MEASURE 'Medidas DAX'[TotalCompras_Pescados] = IF(ISBLANK([ComprasTotales_sitios] * SUM(d_Productos[#Pescados])), 0 , [ComprasTotales_sitios] * SUM(d_Productos[#Pescados]) )
+MEASURE 'Medidas DAX'[TotalCompras_Vinos] = IF(ISBLANK([ComprasTotales_sitios] * SUM(d_Productos[#Vinos])), 0 , [ComprasTotales_sitios] * SUM(d_Productos[#Vinos]) )
+---- MODEL MEASURES END ----
+
